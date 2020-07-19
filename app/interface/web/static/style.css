@@ -1,3 +1,90 @@
 .centered {
     text-align: center;
 }
+
+body {
+    background-color: #131419
+}
+
+h1 {
+    color: #c7c7c7;
+}
+
+h3 {
+    color: #c7c7c7;
+}
+
+.modal-content {
+    background-color: #131419;
+    border-radius: 10px;
+    background: #131419;
+    box-shadow:  20px 20px 13px #08080a,
+                -20px -20px 13px #1e2028;
+}
+
+.modal-content div {
+    color: #c7c7c7;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.modal-content input {
+    text-align: right;
+    color: #03a9f4;
+    border-radius: 50px;
+    background: #131419;
+    box-shadow: inset 20px 20px 13px #08080a,
+                inset -20px -20px 13px #1e2028;
+}
+
+.box {
+    color: #c7c7c7;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    border-radius: 50px;
+    background: #131419;
+    box-shadow:  20px 20px 13px #08080a,
+                -20px -20px 13px #1e2028;
+}
+
+.box:hover {
+    border-radius: 50px;
+    background: #131419;
+    box-shadow: inset 20px 20px 13px #08080a, 
+                inset -20px -20px 13px #1e2028;
+}
+
+.close_box {
+    border-radius: 50px;
+    background: #606375;
+    box-shadow:  20px 20px 60px #30323b, 
+                -20px -20px 60px #9095b0;
+}
+
+.close_box:hover {
+    border-radius: 50px;
+    background: #606375;
+    box-shadow: inset 20px 20px 60px #30323b, 
+                inset -20px -20px 60px #9095b0;
+}
+
+.content-box {
+    padding: 10px 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #c7c7c7;
+    border-radius: 0px;
+    background: #131419;
+    box-shadow:  5px 5px 10px #08080a,
+                -5px -5px 10px #1e2028;
+}
+
+.delete-box {
+    margin-top: 10px;
+border-radius: 0px;
+background: #131419;
+box-shadow: inset 5px 5px 0px #08080a, 
+            inset -5px -5px 0px #1e2028;
+}
