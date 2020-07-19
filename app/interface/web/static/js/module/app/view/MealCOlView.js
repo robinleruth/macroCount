@@ -35,10 +35,10 @@ app.MealColView = Backbone.View.extend({
         this.$('.modal').hide();
     },
     addMeal: function() {
-        let name = this.$('#name').get()[0].value;
-        let fat = parseInt(this.$('#fat').get()[0].value);
-        let carb = parseInt(this.$('#carb').get()[0].value);
-        let prot = parseInt(this.$('#prot').get()[0].value);
+        let name = this.$('#name').get()[0].value || 'A meal';
+        let fat = parseInt(this.$('#fat').get()[0].value || 0);
+        let carb = parseInt(this.$('#carb').get()[0].value || 0);
+        let prot = parseInt(this.$('#prot').get()[0].value || 0);
         this.collection.create({name: name, fat: fat, carb: carb, prot: prot});
         this.$('#name').get()[0].value = '';
         this.$('#fat').get()[0].value = 0;
