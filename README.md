@@ -1,3 +1,3 @@
 # macroCount
 
-![Logo](Macro count.png)
+![Logo](/images/Macro_count.png)
