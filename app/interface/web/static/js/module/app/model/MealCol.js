@@ -5,7 +5,6 @@ var app = app || {};
 app.MealCol = Backbone.Collection.extend({
    initialize: function(models, options) {
        this.date = options.date;
-       console.log(this.date);
     this.localStorage = new Backbone.LocalStorage("meals-" + this.date);
     },
    model: app.Meal,
