@@ -9,6 +9,9 @@ CACHE MANIFEST
 {{ url_for('static', filename='js/module/app/model/App.js')}}
 {{ url_for('static', filename='js/module/app/model/Meal.js')}}
 {{ url_for('static', filename='js/module/app/model/MealCol.js')}}
+{{ url_for('static', filename='js/module/app/todo/Todo.js')}}
+{{ url_for('static', filename='js/module/app/todo/TodoCol.js')}}
+{{ url_for('static', filename='js/module/app/todo/TodoView.js')}}
 {{ url_for('static', filename='js/module/app/view/MealView.js')}}
 {{ url_for('static', filename='js/module/app/view/MealCOlView.js')}}
 {{ url_for('static', filename='js/module/app/view/AppView.js')}}
