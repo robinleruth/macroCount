@@ -11,7 +11,10 @@ app.App = Backbone.Model.extend({
             nbFat: 0,
             nbProt: 0,
             date: this.getTodayDate(),
-            mealCol: new app.MealCol(null, {date: this.getTodayDate()})
+            mealCol: new app.MealCol(null, {date: this.getTodayDate()}),
+            mealSuggestion: new app.MealCol(null, {date: 'suggestion'}),
+            todoCol: new app.TodoCol(),
+            todoSuggestion: new app.TodoCol()
         };
     },
     getTodayDate: function() {
