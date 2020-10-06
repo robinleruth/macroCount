@@ -27,9 +27,15 @@ app.App = Backbone.Model.extend({
     addMeal: function(d){
         if(!this.containsMeal(d.name))
             this.get('mealSuggestion').create(d);
-        console.log(this.get('mealSuggestion'));
     },
     containsMeal: function(mealName){
         return this.get('mealSuggestion').filter(x => x.get('name') == mealName).length ? true : false;
+    },
+    addTodoInSuggestion: function(d){
+        if(!this.containsTodo(d.item))
+            this.get('todoSuggestion').create(d);
+    },
+    containsTodo: function(todoName){
+        return this.get('todoSuggestion').filter(x => x.get('item') == todoName).length ? true : false;
     }
 });
