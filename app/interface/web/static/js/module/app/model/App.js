@@ -23,5 +23,13 @@ app.App = Backbone.Model.extend({
         const mm = String(today.getMonth() + 1).padStart(2, '0');
         const yyyy = today.getFullYear();
         return yyyy + '-' + mm + '-' + dd;
+    },
+    addMeal: function(d){
+        if(!this.containsMeal(d.name))
+            this.get('mealSuggestion').create(d);
+        console.log(this.get('mealSuggestion'));
+    },
+    containsMeal: function(mealName){
+        return this.get('mealSuggestion').filter(x => x.get('name') == mealName).length ? true : false;
     }
 });

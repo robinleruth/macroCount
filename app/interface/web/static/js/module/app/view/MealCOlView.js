@@ -45,5 +45,6 @@ app.MealColView = Backbone.View.extend({
         this.$('#carb').get()[0].value = 0 ;
         this.$('#prot').get()[0].value = 0;
         this.$('.modal').hide();
+        app.app.addMeal({name: name, fat: fat, carb: carb, prot: prot});
     }
 });
