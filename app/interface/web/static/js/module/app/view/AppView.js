@@ -41,9 +41,9 @@ app.AppView = Backbone.View.extend({
     },
     displayPie: function() {
         let ctx = document.getElementById('pieChart').getContext('2d');
-        let calorieProt = this.model.get('nbProt');
-        let calorieFat = this.model.get('nbFat');
-        let calorieCarb = this.model.get('nbCarb');
+        let calorieProt = this.model.get('nbProt') * 4;
+        let calorieFat = this.model.get('nbFat') * 9;
+        let calorieCarb = this.model.get('nbCarb') * 4;
         let myChart = new Chart(ctx, {
             type: 'pie',
             data: {
