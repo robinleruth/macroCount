@@ -18,12 +18,13 @@ app.AppView = Backbone.View.extend({
        this.listenTo(this.model, 'change:mealCol', this.change);
        this.listenTo(this.model, 'change:date', this.updateCol);
 
+       this.navbar = new app.Navbar();
        this.model.get('mealCol').fetch();
-       // this.change();
        this.render();
    },
    render: function(){
        this.$el.html(this.template(this.model.toJSON()));
+       this.$('#navigation-bar').append(this.navbar.render().el);
        new app.MealColView({
            el: this.$('.col'),
            collection: this.model.get('mealCol')
