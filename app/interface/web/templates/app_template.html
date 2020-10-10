@@ -1,6 +1,11 @@
 <script type='text/template' id='app_view_template'>
     <div>
         <h3 class="centered">Date : <%= date %> </h3>
+        <div class="d-flex justify-content-around align-items-center">
+            <label for="date-picker">Date : </label>
+            <input id="date-picker" name="date-picker" type="date" class="content-box" value="<%= date %>"/>
+            <button class="change-date content-box">Change date</button>
+        </div>
         <div class="d-flex justify-content-around flex-wrap">
             <div>
                 <div class="col"></div>
@@ -14,5 +19,4 @@
             </div>
         </div>
     </div>
-
 </script>

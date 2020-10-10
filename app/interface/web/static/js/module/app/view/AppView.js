@@ -8,12 +8,15 @@ app.AppView = Backbone.View.extend({
    tagName: 'div',
    className: '',
    events: {
+       'click .change-date': 'changeDate'
    },
    initialize: function(){
        this.listenTo(this.model, 'change', this.render);
        this.listenTo(this.model, 'destroy', this.remove);
        this.listenTo(this.model, 're-render', this.render);
        this.listenTo(this.model.get('mealCol'), 'update', this.change);
+       this.listenTo(this.model, 'change:mealCol', this.change);
+       this.listenTo(this.model, 'change:date', this.updateCol);
 
        this.model.get('mealCol').fetch();
        // this.change();
@@ -71,5 +74,14 @@ app.AppView = Backbone.View.extend({
                 }]
             }
         });
+    },
+    changeDate: function(){
+        let date = this.$('#date-picker').val();
+        this.model.set('date', date);
+    },
+    updateCol: function(){
+       this.model.set('mealCol', new app.MealCol(null, {date: this.model.get('date')}));
+       this.listenTo(this.model.get('mealCol'), 'update', this.change);
+       this.model.get('mealCol').fetch();
     }
 });
