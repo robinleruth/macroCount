@@ -3,29 +3,32 @@
     <div class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add new meal !</h5>
-                <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body d-flex">
-                <div>
-                    <label for="name">Meal</label>
-                    <label for="fat">Fat</label>
-                    <label for="prot">Prot</label>
-                    <label for="carb">Carb</label>
+                <div class="modal-header">
+                    <h5 class="modal-title">Add new meal !</h5>
+                    <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div>
-                    <input id="name" name="name"/>
-                    <input id="fat" name="fat" type="number"/>
-                    <input id="prot" name="prot" type="number"/>
-                    <input id="carb" name="carb" type="number"/>
+                <div class="modal-body d-flex">
+                    <div>
+                        <label for="name">Meal</label>
+                        <label for="fat">Fat</label>
+                        <label for="prot">Prot</label>
+                        <label for="carb">Carb</label>
+                    </div>
+                    <div>
+                        <input id="name" name="name"/>
+                        <input id="fat" name="fat" type="number"/>
+                        <input id="prot" name="prot" type="number"/>
+                        <input id="carb" name="carb" type="number"/>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="box add_meal_by_modal">Add new meal</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="box show_suggestion">From suggestion</button>
+                    <button type="button" class="box add_meal_by_modal">Add new meal</button>
+                </div>
+                <div class="modal-after-footer" style="display: none;overflow: scroll">
+                </div>
             </div>
         </div>
     </div>

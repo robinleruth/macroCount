@@ -11,6 +11,7 @@ app.MealView = Backbone.View.extend({
         'click .parent': 'edit',
         'keypress .edit': 'updateOnEnter',
         'blur .edit': 'close',
+        'click': 'triggerEvent',
    },
    initialize: function(){
        this.listenTo(this.model, 'change', this.render);
@@ -43,4 +44,8 @@ app.MealView = Backbone.View.extend({
         this.model.save(j);
         this.parent.removeClass('editing');
     },
+    triggerEvent: function(){
+        this.model.trigger('click-on-meal', this.model);
+        this.trigger('click-on-meal', this.model);
+    }
 });

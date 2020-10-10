@@ -10,8 +10,11 @@ app.MealColView = Backbone.View.extend({
         'click .new_one': 'create',
         'click .close_modal': 'closeModal',
         'click .add_meal_by_modal': 'addMeal',
+        'click .show_suggestion': 'showSuggestion',
    },
    initialize: function(){
+       this.mealColViewSimple = new app.MealColViewSimple({collection: app.app.get('mealSuggestion')});
+        this.listenTo(this.mealColViewSimple, 'click-on-meal', this.clickOnMeal);
         this.listenTo(this.collection, 'add', this.addOne);
         this.listenTo(this.collection, 're-render', this.render);
         this.render();
@@ -19,6 +22,7 @@ app.MealColView = Backbone.View.extend({
    },
    render: function(){
        this.$el.html(this.template());
+       this.$('.modal-after-footer').append(this.mealColViewSimple.render().el);
        return this;
    },
     addOne: function(model){
@@ -33,6 +37,7 @@ app.MealColView = Backbone.View.extend({
     },
     closeModal: function() {
         this.$('.modal').hide();
+        this.$('.modal-after-footer').hide();
     },
     addMeal: function() {
         let name = this.$('#name').get()[0].value || 'A meal';
@@ -46,5 +51,15 @@ app.MealColView = Backbone.View.extend({
         this.$('#prot').get()[0].value = 0;
         this.$('.modal').hide();
         app.app.addMeal({name: name, fat: fat, carb: carb, prot: prot});
+    },
+    showSuggestion: function(){
+        this.$('.modal-after-footer').fadeIn();
+        app.app.get('mealSuggestion').fetch();
+    },
+    clickOnMeal: function(e){
+        this.$('#name').get()[0].value = e.get('name');
+        this.$('#fat').get()[0].value = e.get('fat');
+        this.$('#carb').get()[0].value = e.get('carb');
+        this.$('#prot').get()[0].value = e.get('prot');
     }
 });
