@@ -8,6 +8,7 @@ app.TodoView = Backbone.View.extend({
    className: '',
    events: {
         'click .delete': 'clear',
+        'click': 'triggerEvent',
    },
    initialize: function(){
        this.listenTo(this.model, 'change', this.render);
@@ -21,4 +22,8 @@ app.TodoView = Backbone.View.extend({
     clear: function(){
         this.model.destroy();
     },
+    triggerEvent: function(){
+        this.model.trigger('click-on-todo-suggestion', this.model);
+        this.trigger('click-on-todo-suggestion', this.model);
+    }
 });

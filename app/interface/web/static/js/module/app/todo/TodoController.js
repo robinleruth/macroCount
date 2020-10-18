@@ -14,6 +14,8 @@ app.TodoController = Backbone.View.extend({
 
        this.suggestionColView = new app.TodoColView({collection: app.app.get('todoSuggestion')});
        this.todayColView = new app.TodoColView({collection: this.collection});
+
+       this.suggestionColView.listenTo(app.app.get('todoSuggestion'), 'click-on-todo-suggestion', this.feedInput.bind(this));
    },
    render: function(){
        this.$el.html(this.template());
@@ -24,8 +26,12 @@ app.TodoController = Backbone.View.extend({
     create: function(){
         // this.collection.create();
         app.app.addTodo({
-            item: 'ok',
-            number: this.$('input').val()
+            item: this.$('input.item').val(),
+            number: this.$('input.number').val()
         });
-    }
+    },
+    feedInput: function(e){
+        this.$('input.number').val(e.get('number'));
+        this.$('input.item').val(e.get('item'));
+    },
 });
