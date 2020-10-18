@@ -7,6 +7,9 @@ app.Navbar = Backbone.View.extend({
    tagName: 'div',
    className: '',
    events: {
+       'click .meal': 'triggerMeal',
+       'click .todo': 'triggerTodo',
+       'click .sleep': 'triggerSleep'
    },
    initialize: function(){
    },
@@ -14,4 +17,13 @@ app.Navbar = Backbone.View.extend({
        this.$el.html(this.template());
        return this;
    },
+    triggerMeal: function(){
+        this.trigger('meal-event');
+    },
+    triggerTodo: function(){
+        this.trigger('todo-event');
+    },
+    triggerSleep: function(){
+        this.trigger('sleep-event');
+    },
 });

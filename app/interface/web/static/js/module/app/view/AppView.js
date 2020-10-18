@@ -19,6 +19,9 @@ app.AppView = Backbone.View.extend({
        this.listenTo(this.model, 'change:date', this.updateCol);
 
        this.navbar = new app.Navbar();
+       this.listenTo(this.navbar, 'meal-event', this.displayMeal);
+       this.listenTo(this.navbar, 'todo-event', this.displayTodo);
+       this.listenTo(this.navbar, 'sleep-event', this.displaySleep);
        this.model.get('mealCol').fetch();
        this.render();
    },
@@ -30,6 +33,7 @@ app.AppView = Backbone.View.extend({
            collection: this.model.get('mealCol')
        });
        this.displayPie();
+       this.displayMeal();
        return this;
    },
     change: function() {
@@ -84,5 +88,20 @@ app.AppView = Backbone.View.extend({
        this.model.set('mealCol', new app.MealCol(null, {date: this.model.get('date')}));
        this.listenTo(this.model.get('mealCol'), 'update', this.change);
        this.model.get('mealCol').fetch();
-    }
+    },
+    displayMeal: function(){
+        this.$('#mealDiv').fadeIn();
+        this.$('#todoDiv').hide();
+        this.$('#sleepDiv').hide();
+    },
+    displayTodo: function(){
+        this.$('#mealDiv').hide();
+        this.$('#todoDiv').fadeIn();
+        this.$('#sleepDiv').hide();
+    },
+    displaySleep: function(){
+        this.$('#mealDiv').hide();
+        this.$('#todoDiv').hide();
+        this.$('#sleepDiv').fadeIn();
+    },
 });
