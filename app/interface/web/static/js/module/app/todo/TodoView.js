@@ -7,6 +7,7 @@ app.TodoView = Backbone.View.extend({
    tagName: 'div',
    className: '',
    events: {
+        'click .delete': 'clear',
    },
    initialize: function(){
        this.listenTo(this.model, 'change', this.render);
@@ -17,4 +18,7 @@ app.TodoView = Backbone.View.extend({
        this.$el.html(this.template(this.model.toJSON()));
        return this;
    },
+    clear: function(){
+        this.model.destroy();
+    },
 });

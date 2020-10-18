@@ -18,6 +18,11 @@ app.AppView = Backbone.View.extend({
        this.listenTo(this.model, 'change:mealCol', this.change);
        this.listenTo(this.model, 'change:date', this.updateCol);
 
+       this.model.get('mealCol').fetch();
+       this.model.get('mealSuggestion').fetch();
+       this.model.get('todoCol').fetch();
+       this.model.get('todoSuggestion').fetch();
+
        this.navbar = new app.Navbar();
        this.listenTo(this.navbar, 'meal-event', this.displayMeal);
        this.listenTo(this.navbar, 'todo-event', this.displayTodo);
@@ -25,7 +30,6 @@ app.AppView = Backbone.View.extend({
 
        this.todoController = new app.TodoController({collection: this.model.get('todoCol')});
 
-       this.model.get('mealCol').fetch();
        this.render();
    },
    render: function(){
