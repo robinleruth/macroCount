@@ -22,12 +22,16 @@ app.AppView = Backbone.View.extend({
        this.listenTo(this.navbar, 'meal-event', this.displayMeal);
        this.listenTo(this.navbar, 'todo-event', this.displayTodo);
        this.listenTo(this.navbar, 'sleep-event', this.displaySleep);
+
+       this.todoController = new app.TodoController({collection: this.model.get('todoCol')});
+
        this.model.get('mealCol').fetch();
        this.render();
    },
    render: function(){
        this.$el.html(this.template(this.model.toJSON()));
        this.$('#navigation-bar').append(this.navbar.render().el);
+       this.$('#todoDiv').append(this.todoController.render().el);
        new app.MealColView({
            el: this.$('.col'),
            collection: this.model.get('mealCol')
