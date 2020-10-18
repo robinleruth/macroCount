@@ -12,18 +12,25 @@ app.Navbar = Backbone.View.extend({
        'click .sleep': 'triggerSleep'
    },
    initialize: function(){
+       this.currentState = 'meal-event';
    },
    render: function(){
        this.$el.html(this.template());
        return this;
    },
     triggerMeal: function(){
-        this.trigger('meal-event');
+       this.currentState = 'meal-event';
+       this.triggerCurrent();
     },
     triggerTodo: function(){
-        this.trigger('todo-event');
+       this.currentState = 'todo-event';
+        this.triggerCurrent();
     },
     triggerSleep: function(){
-        this.trigger('sleep-event');
+       this.currentState = 'sleep-event';
+       this.triggerCurrent();
     },
+    triggerCurrent: function(){
+        this.trigger(this.currentState);
+    }
 });

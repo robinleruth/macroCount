@@ -11,10 +11,10 @@ app.AppView = Backbone.View.extend({
        'click .change-date': 'changeDate'
    },
    initialize: function(){
-       this.listenTo(this.model, 'change', this.render);
        this.listenTo(this.model, 'destroy', this.remove);
        this.listenTo(this.model, 're-render', this.render);
        this.listenTo(this.model.get('mealCol'), 'update', this.change);
+       this.listenTo(this.model.get('mealCol'), 'reset', this.change);
        this.listenTo(this.model, 'change:mealCol', this.change);
        this.listenTo(this.model, 'change:date', this.updateCol);
 
@@ -30,6 +30,8 @@ app.AppView = Backbone.View.extend({
 
        this.todoController = new app.TodoController({collection: this.model.get('todoCol')});
 
+       this.listenTo(this.model, 'change', this.render);
+
        this.render();
    },
    render: function(){
@@ -41,7 +43,7 @@ app.AppView = Backbone.View.extend({
            collection: this.model.get('mealCol')
        });
        this.displayPie();
-       this.displayMeal();
+       this.navbar ? this.navbar.triggerCurrent() : this.displayMeal();
        return this;
    },
     change: function() {
@@ -93,9 +95,13 @@ app.AppView = Backbone.View.extend({
         this.model.set('date', date);
     },
     updateCol: function(){
-       this.model.set('mealCol', new app.MealCol(null, {date: this.model.get('date')}));
-       this.listenTo(this.model.get('mealCol'), 'update', this.change);
-       this.model.get('mealCol').fetch();
+       let tempMealCol = new app.MealCol(null, {date: this.model.get('date')});
+       tempMealCol.fetch()
+       this.model.get('mealCol').reset(tempMealCol.models);
+
+       let tempTodoCol = new app.TodoCol(null, {date: this.model.get('date')});
+       tempTodoCol.fetch();
+       this.model.get('todoCol').reset(tempTodoCol.models);
     },
     displayMeal: function(){
         this.$('#mealDiv').fadeIn();

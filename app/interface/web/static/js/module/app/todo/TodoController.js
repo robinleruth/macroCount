@@ -13,7 +13,7 @@ app.TodoController = Backbone.View.extend({
        // this.listenTo(this.collection, 'update', this.render);
 
        this.suggestionColView = new app.TodoColView({collection: app.app.get('todoSuggestion')});
-       this.todayColView = new app.TodoColView({collection: this.collection});
+       this.todayColView = new app.TodoColView({collection: app.app.get('todoCol')});
 
        this.suggestionColView.listenTo(app.app.get('todoSuggestion'), 'click-on-todo-suggestion', this.feedInput.bind(this));
    },

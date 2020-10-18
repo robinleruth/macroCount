@@ -8,10 +8,12 @@ app.TodoColView = Backbone.View.extend({
     },
     initialize: function(){
         this.listenTo(this.collection, 'add', this.addOne);
+        this.listenTo(this.collection, 'reset', this.render);
         // this.listenTo(this.collection, 'remove', this.render);
         // this.listenTo(this.collection, 're-render', this.render);
     },
     render: function(){
+        this.$el.html('');
         this.addAll();
         return this;
     },
