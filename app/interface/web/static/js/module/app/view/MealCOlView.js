@@ -23,6 +23,7 @@ app.MealColView = Backbone.View.extend({
    render: function(){
        this.$el.html(this.template());
        this.$('.modal-after-footer').append(this.mealColViewSimple.render().el);
+       this.mealColViewSimple.delegateEvents();
        return this;
    },
     addOne: function(model){

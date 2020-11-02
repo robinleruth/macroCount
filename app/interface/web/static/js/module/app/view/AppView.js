@@ -29,7 +29,7 @@ app.AppView = Backbone.View.extend({
        this.listenTo(this.navbar, 'todo-event', this.displayTodo);
        this.listenTo(this.navbar, 'sleep-event', this.displaySleep);
 
-       this.todoController = new app.TodoController({collection: this.model.get('todoCol')});
+       this.todoController = new app.TodoController();
 
        this.listenTo(this.model, 'change', this.render);
 
@@ -39,7 +39,9 @@ app.AppView = Backbone.View.extend({
         console.log('render AppView');
        this.$el.html(this.template(this.model.toJSON()));
        this.$('#navigation-bar').append(this.navbar.render().el);
+       this.navbar.delegateEvents();
        this.$('#todoDiv').append(this.todoController.render().el);
+       this.todoController.delegateEvents();
        new app.MealColView({
            el: this.$('.col'),
            collection: this.model.get('mealCol')
@@ -101,13 +103,12 @@ app.AppView = Backbone.View.extend({
     },
     updateCol: function(){
         console.log('updateCol AppView');
-       let tempMealCol = new app.MealCol(null, {date: this.model.get('date')});
-       tempMealCol.fetch()
-       this.model.get('mealCol').reset(tempMealCol.models);
+       this.model.set('mealCol', new app.MealCol(null, {date: this.model.get('date')}));
+       this.model.get('mealCol').fetch();
 
-       let tempTodoCol = new app.TodoCol(null, {date: this.model.get('date')});
-       tempTodoCol.fetch();
-       this.model.get('todoCol').reset(tempTodoCol.models);
+       this.model.set('todoCol', new app.TodoCol(null, {date: this.model.get('date')}));
+       this.model.get('todoCol').fetch();
+        this.change();
     },
     displayMeal: function(){
         console.log('displayMeal AppView');
