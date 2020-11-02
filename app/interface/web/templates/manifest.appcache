@@ -2,6 +2,7 @@ CACHE MANIFEST
 {{ url_for('static', filename='js/lib/jquery-3.2.1.slim.min.js')}}
 {{ url_for('static', filename='js/lib/popper.min.js')}}
 {{ url_for('static', filename='js/lib/bootstrap.min.js')}}
+{{ url_for('static', filename='bootstrap.min.css')}}
 {{ url_for('static', filename='style.css')}}
 {{ url_for('static', filename='Chart.min.css')}}
 {{ url_for('static', filename='js/lib/jquery-3.5.1.min.js')}}
