@@ -11,6 +11,7 @@ app.AppView = Backbone.View.extend({
        'click .change-date': 'changeDate'
    },
    initialize: function(){
+        console.log('initialize AppView');
        this.listenTo(this.model, 'destroy', this.remove);
        this.listenTo(this.model, 're-render', this.render);
        this.listenTo(this.model.get('mealCol'), 'update', this.change);
@@ -35,6 +36,7 @@ app.AppView = Backbone.View.extend({
        this.render();
    },
    render: function(){
+        console.log('render AppView');
        this.$el.html(this.template(this.model.toJSON()));
        this.$('#navigation-bar').append(this.navbar.render().el);
        this.$('#todoDiv').append(this.todoController.render().el);
@@ -47,6 +49,7 @@ app.AppView = Backbone.View.extend({
        return this;
    },
     change: function() {
+        console.log('change AppView');
         let col = this.model.get('mealCol').models;
         this.model.set('nbFat', col.reduce((acc, el) => acc + el.get('fat'), 0));
         this.model.set('nbCarb', col.reduce((acc, el) => acc + el.get('carb'), 0));
@@ -58,6 +61,7 @@ app.AppView = Backbone.View.extend({
         return this;
     },
     displayPie: function() {
+        console.log('displayPie AppView');
         let ctx = document.getElementById('pieChart').getContext('2d');
         let calorieProt = this.model.get('nbProt') * 4;
         let calorieFat = this.model.get('nbFat') * 9;
@@ -91,10 +95,12 @@ app.AppView = Backbone.View.extend({
         });
     },
     changeDate: function(){
+        console.log('changeDate AppView');
         let date = this.$('#date-picker').val();
         this.model.set('date', date);
     },
     updateCol: function(){
+        console.log('updateCol AppView');
        let tempMealCol = new app.MealCol(null, {date: this.model.get('date')});
        tempMealCol.fetch()
        this.model.get('mealCol').reset(tempMealCol.models);
@@ -104,17 +110,20 @@ app.AppView = Backbone.View.extend({
        this.model.get('todoCol').reset(tempTodoCol.models);
     },
     displayMeal: function(){
-        this.$('#mealDiv').fadeIn();
+        console.log('displayMeal AppView');
+        this.$('#mealDiv').css('display', '');
         this.$('#todoDiv').hide();
         this.$('#sleepDiv').hide();
     },
     displayTodo: function(){
-        this.$('#mealDiv').hide();
+        console.log('displayTodo AppView');
+        this.$('#mealDiv').css({'cssText': 'display: none !important'});
         this.$('#todoDiv').fadeIn();
         this.$('#sleepDiv').hide();
     },
     displaySleep: function(){
-        this.$('#mealDiv').hide();
+        console.log('displaySleep AppView');
+        this.$('#mealDiv').css({'cssText': 'display: none !important'});
         this.$('#todoDiv').hide();
         this.$('#sleepDiv').fadeIn();
     },
