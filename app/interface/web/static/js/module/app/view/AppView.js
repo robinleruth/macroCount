@@ -14,10 +14,10 @@ app.AppView = Backbone.View.extend({
         console.log('initialize AppView');
        this.listenTo(this.model, 'destroy', this.remove);
        this.listenTo(this.model, 're-render', this.render);
-       this.listenTo(this.model.get('mealCol'), 'update', this.change);
-       this.listenTo(this.model.get('mealCol'), 'reset', this.change);
        this.listenTo(this.model, 'change:mealCol', this.change);
+       this.listenTo(this.model, 'change:mealCol', this.rebindEvent);
        this.listenTo(this.model, 'change:date', this.updateCol);
+       this.rebindEvent();
 
        this.model.get('mealCol').fetch();
        this.model.get('mealSuggestion').fetch();
@@ -34,6 +34,11 @@ app.AppView = Backbone.View.extend({
        this.listenTo(this.model, 'change', this.render);
 
        this.render();
+   },
+   rebindEvent: function() {
+       this.stopListening(this.model.get('mealCol'));
+       this.listenTo(this.model.get('mealCol'), 'update', this.change);
+       this.listenTo(this.model.get('mealCol'), 'reset', this.change);
    },
    render: function(){
         console.log('render AppView');
